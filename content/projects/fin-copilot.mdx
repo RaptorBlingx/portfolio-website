@@ -1,0 +1,75 @@
+---
+title: "Fin-CoPilot — Conversational AI Finance App"
+role: "Architect / Integrator"
+period: "2024–2025"
+funding: ""
+tags: ["AI", "Mobile", "Flutter"]
+featuredImage: "/assets/projects/fin-copilot-hero.png"
+demoUrl: ""
+github: "https://github.com/RaptorBlingx/fin-copilot"
+summary: "Designed and built a Flutter-based conversational personal finance app with Google Gemini 2.5 Flash multi-agent architecture for intelligent expense tracking and financial insights."
+tier: 1
+featured: true
+metrics:
+  agents: "Multi-agent"
+  platform: "Cross-platform"
+---
+
+## Problem
+
+Personal finance apps are typically form-heavy and tedious. Users must manually categorize expenses, navigate complex screens, and interpret charts themselves. There's an opportunity to make personal finance management conversational and intelligent — let users simply talk about their spending and get actionable insights back.
+
+## My Role & Responsibilities
+
+- **Architected the full system** — Flutter frontend, Firebase backend, and multi-agent AI layer
+- Designed the **multi-agent architecture** using Google Gemini 2.5 Flash for expense parsing, categorization, and financial insight generation
+- Built the **conversational UI** for natural language expense entry ("I spent 50 on groceries today")
+- Integrated Firebase for authentication, real-time database, and cloud functions
+- Implemented **ML-powered categorization** that learns from user patterns over time
+
+## Architecture
+
+<MermaidDiagram chart={`
+graph TB
+  subgraph "Client"
+    APP[Flutter App] --> CHAT[Conversational UI]
+    APP --> DASH[Dashboard & Charts]
+  end
+  subgraph "AI Layer"
+    CHAT -->|Natural Language| GEMINI[Gemini 2.5 Flash]
+    GEMINI --> PARSER[Expense Parser Agent]
+    GEMINI --> INSIGHT[Insight Generator Agent]
+    GEMINI --> BUDGET[Budget Advisor Agent]
+  end
+  subgraph "Backend"
+    PARSER --> FB[Firebase]
+    INSIGHT --> FB
+    FB --> AUTH[Authentication]
+    FB --> RTDB[Realtime Database]
+    FB --> CF[Cloud Functions]
+  end
+`} />
+
+## Tech Stack
+
+- **Frontend:** Flutter (Dart) — cross-platform (iOS, Android)
+- **AI:** Google Gemini 2.5 Flash — multi-agent setup (parser, insight generator, budget advisor)
+- **Backend:** Firebase (Authentication, Realtime Database, Cloud Functions)
+- **State Management:** Provider / Riverpod pattern
+
+## Results & Impact
+
+- **Natural language expense tracking** — users can add expenses conversationally instead of filling forms
+- **Multi-agent architecture** demonstrates practical LLM integration at the application layer
+- **Cross-platform** — single Flutter codebase for iOS and Android
+- Showcases modern AI product thinking — turning an LLM capability into a usable product feature
+
+## Challenges & Lessons Learned
+
+- **Gemini response consistency** — structured output from LLMs requires careful prompt engineering and validation; implemented fallback parsing for edge cases
+- **Multi-agent coordination** — defining clear responsibilities for each agent (parsing vs. insights vs. budgeting) prevented overlapping responses
+- **Offline-first considerations** — financial data needs to work offline; implemented local caching with sync-on-connectivity pattern
+
+## How AI/Agents Were Used
+
+This project is AI-native: the core product feature is multi-agent LLM interaction. Beyond the product itself, agentic VS Code workflows accelerated Flutter widget development and Firebase integration patterns. I orchestrated the architecture design through custom agents, then validated and refined outputs for production quality.

@@ -1,0 +1,71 @@
+---
+title: "Building Industrial Energy Management Systems — Lessons from the Field"
+date: "2025-01-08"
+tags: ["Industrial", "IoT", "Engineering"]
+summary: "What I learned deploying energy management systems in real manufacturing facilities and FabLabs — from sensor hardware to production Docker stacks."
+---
+
+After two years of building energy management systems (EnMS) for EU-funded industrial projects, I've learned that the gap between a working prototype and a field-deployed system is where most of the real engineering happens.
+
+## The Reality of Industrial Deployments
+
+In a lab, your MQTT broker is on localhost. Your sensors have stable WiFi. Your database never runs out of disk space. In a real manufacturing facility or FabLab, none of that is true.
+
+Here's what actually matters:
+
+### 1. Sensors Fail — Design for It
+
+On the [LAUDS project](/projects/lauds), we deployed ESP32 sensor hubs across three FabCity Hamburg sites. In the first week:
+
+- Two sensors lost WiFi connectivity due to interference from industrial equipment
+- One thermocouple reading drifted after exposure to workshop dust
+- The MQTT broker on one site ran out of memory because a sensor entered a reconnection loop, publishing thousands of messages per second
+
+The fix wasn't better sensors — it was better **firmware**. Exponential backoff on reconnection. Local buffering when MQTT is unavailable. Watchdog timers that restart the ESP32 if the main loop stalls.
+
+### 2. Time-Series Data Volume Is Non-Trivial
+
+A single Shelly smart plug publishing power readings every second generates ~2.6 million rows per month. Multiply that by 15 plugs across 3 sites and you're looking at serious data volume.
+
+**TimescaleDB** was the answer. Its chunk-based architecture means queries on recent data stay fast regardless of total table size. Compression policies reduced storage by ~90% for data older than 7 days.
+
+Key settings that made a difference:
+- Chunk interval: 1 day (balances query speed vs. chunk management overhead)
+- Compression after 7 days
+- Retention policy: raw data for 90 days, downsampled aggregates forever
+
+### 3. Dashboards Are for Humans, Not Engineers
+
+My first Grafana dashboards were information-dense technical panels. The FabLab operators looked at them and said: "What am I supposed to do with this?"
+
+The redesign focused on three principles:
+- **One number per panel** — current power draw, today's total consumption
+- **Color = action** — green (normal), yellow (above average), red (intervention needed)
+- **Context over precision** — "25% higher than last Tuesday" is more useful than "3.847 kWh"
+
+### 4. Docker-Compose Is Your Deployment Contract
+
+Every EnMS I've built runs as a Docker-Compose stack. The compose file IS the deployment documentation:
+
+- Service dependencies are explicit
+- Health checks define what "running" means
+- Volume mounts document what data persists
+- Environment variables document what's configurable
+
+For [HumanEnerDIA](/projects/humanenerdia), the compose file orchestrated 8 services: FastAPI backend, OVOS voice assistant, RASA chatbot, Node-RED, TimescaleDB, MQTT broker, Grafana, and a reverse proxy. Any developer can `docker-compose up` and have the full system running.
+
+## What I'd Do Differently
+
+1. **Start with monitoring** — deploy Prometheus and alerting before the application services. You can't fix what you can't see.
+2. **Define data contracts early** — sensor payload schemas should be versioned from day one. Breaking changes to MQTT topics cause cascade failures.
+3. **Budget for field support** — no deployment survives first contact with reality without on-site debugging time.
+
+## The Takeaway
+
+Building industrial systems is systems engineering, not just software engineering. The code is maybe 40% of the work. The rest is hardware reliability, data architecture, user experience for non-technical operators, and deployment resilience.
+
+Every failure in the field taught me something that made the next deployment smoother.
+
+---
+
+*Working on an industrial IoT or energy management project? I'd love to hear about it — [reach out](/contact).*

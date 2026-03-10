@@ -1,0 +1,298 @@
+# CONTEXT FOR AI AGENT — MOHAMAD (JARAD) JARAD
+
+## 0 — Meta / how to use this file
+
+This document is a comprehensive context snapshot about Mohamad Jarad (aka Jarad / raptorblingx). The agent should use it to:
+
+* Build a production-ready portfolio site (Next.js + Tailwind + MDX) and populate it with case studies.
+* Generate deployable repo scaffolding, README, GitHub Actions, and MDX content for projects.
+* Produce outreach copy, LinkedIn headlines, salary justification text, and interview talking points.
+* Produce a one-page project pitch (one-pager) for a pilot of the Syria bus booking product.
+* Keep all tone professional, technically deep, and targeted to CTOs, hiring managers and EU/Gulf recruiters.
+
+---
+
+## 1 — Owner / contact (for site copy)
+
+* Full name: **Mohamad (Jarad) Jarad**
+* Professional title (preferred on site): **AI-Augmented Software Engineer | AI Systems Builder | Industrial AI & EU R&D**
+* Location: Mersin, Türkiye
+* Email (placeholder): `{{EMAIL}}`
+* LinkedIn: `linkedin.com/in/raptorblingx`
+* GitHub: `github.com/raptorblingx`
+* Demo link (live): `https://lauds-demo.intel50001.com/`
+* Phone: `+90 552 785 57 65` (use only for final contact page if owner authorizes)
+
+---
+
+## 2 — High-level professional summary (to reuse verbatim)
+
+> I design and ship production industrial AI systems and agent-driven development workflows for EU-funded projects. I build AI assistants (voice & text), EnMS platforms, and scalable IoT pipelines — turning research and proposals into running systems. I lead architecture, integrate LLMs & agents, and orchestrate AI-augmented development workflows to accelerate delivery while keeping production reliability.
+
+---
+
+## 3 — Key personal constraints & timeline
+
+* Legal / work status: Currently in Türkiye on a **tourist residence permit**; previously on student permit. Because permit was shorter than 6 months, couldn't apply for work permit. **Estimated eligibility for a proper work permit in about 2 months.** (Important: until then, current employer pays cash.)
+* Financial context: Current salary **40,000 TRY/month** (cash, sometimes delayed). Priority: *stability + timely pay*.
+* Personal: Married; family responsibilities are a factor in decisions. (Use this as motivation when designing salary/notice recommendations.)
+* Preferred short term strategy: Secure better-paid stable role (remote/Gulf/Europe) while validating entrepreneurial bus-booking pilot on the side.
+
+---
+
+## 4 — Career goals & positioning
+
+* Short-term: Move to **AI Systems / Applied AI** roles with stable payroll (remote, Gulf, or Europe) or secure freelance/contract income while validating startup ideas.
+* Long-term: Be recognized as a **system builder** who converts EU R&D & complex ideas into production AI systems; possible path to founding or CTO role.
+* Public positioning: Avoid “vibe coder” label; present as *AI-Augmented Systems Engineer / AI Systems Builder* (lead & delivery focus).
+
+---
+
+## 5 — Salary & notice preferences (for use in applications)
+
+* Target Dubai / Gulf compensation: **22,000 – 28,000 AED/month** (≈ $6k–$7.6k).
+* LinkedIn expected salary (Turkey): **80,000 – 120,000 TRY / month (negotiable)**.
+* Notice period to state in applications: **Immediate — up to 2 weeks** (shows flexibility & professionalism).
+
+---
+
+## 6 — Technical skillset (short)
+
+* Languages & frameworks: Python, JavaScript, React, FastAPI, Node.js, Dart (Flutter), C/C++, C#, MERN, .NET basics.
+* AI & ML: LLM integration, RAG, embeddings, prompt engineering, TensorFlow, PyTorch, Ollama, Gemini (experience integrating), AI copilots, multi-agent workflows.
+* DevOps & infra: Docker, Docker-Compose, Vercel, GitHub, GitHub Actions, Grafana, Linux, TimescaleDB/Postgres, Redis.
+* IoT & hardware: ESP32, Raspberry Pi (OctoPrint), MQTT, Modbus TCP, Shelly Plugs, sensor hubs (MPU6050, MAX6675, DHT22).
+* Databases: PostgreSQL, TimescaleDB, MongoDB, Redis, ChromaDB (vector DB experience).
+* Tools & subscriptions: GitHub Copilot Pro+; custom agents in VS Code; experience building agent workflows that orchestrate architecture & code generation.
+
+---
+
+## 7 — Leadership & process
+
+* Led development tasks as **Team Lead** twice; managed a junior developer; performed code reviews; defined Work Packages and API integrations.
+* Practices: AI-augmented development workflows (agents generate & review code; Mohamad orchestrates, validates, and integrates).
+* Strengths: System architecture, EU project delivery, client & field deployments, productization of research.
+
+---
+
+## 8 — Full project list (20+). Each entry includes role, one-liner, tech, and key details you provided. Use these to generate MDX case studies.
+
+### A — EU / Industrial / Energy Projects (high priority)
+
+1. **LAUDS — Human-Centric Energy Management Demonstrator**
+
+   * Role: Developer / Site Deployment
+   * Summary: Modular EnMS demonstrator for FabCity Hamburg (JUPITER OpenSpace, Fabulous St. Pauli, FABRIC).
+   * Tech: ESP32 sensor hubs, smart plugs, thermocouples, Node-RED, PostgreSQL/TimescaleDB, MQTT, Grafana, Raspberry Pi + OctoPrint.
+   * Demo: `https://lauds-demo.intel50001.com/`
+   * Impact: human-centric interfaces; validated in real FabLabs; workshops.
+
+2. **HumanEnerDIA — Human-Centric Intelligent EnMS + DIA (Digital Intelligent Assistant)**
+
+   * Role: Core Developer / Integrator
+   * Summary: Production-ready EnMS with OVOS voice assistant, RASA chatbot, FastAPI analytics, TimescaleDB.
+   * Tech: OVOS, LLM integrations, RASA, FastAPI, TimescaleDB, Node-RED, Grafana, Docker.
+   * Goals: reduce technical effort, support ISO 50001, add voice/text assistance.
+
+3. **AVAROS — AI Digital Assistant for Sustainable Manufacturing**
+
+   * Role: **Lead Developer** (primary leadership case)
+   * Summary: Lead design & integration: RENERYO base + OVOS + DocuBoT + PREVENTION; Docker-Compose; WASABI stack.
+   * Tech: OVOS, DocuBoT, PREVENTION, Docker-Compose, APIs, LLM integrations.
+   * Impact targets: ~8% electricity reduction, 5% materials efficiency, 10% CO2 reduction.
+   * Leadership: planned Work Packages, supervised junior dev, code reviews, integration.
+
+### B — AI / Product / Agent Projects
+
+4. **Fin-CoPilot**
+
+   * Role: Architect / Integrator
+   * Summary: Flutter app for conversational personal finance; multi-agent architecture; Google Gemini 2.5 Flash used.
+   * Tech: Flutter, Firebase, Gemini API, ML agents, conversational UI.
+
+5. **PromptVault Pro**
+
+   * Role: Creator/Architect
+   * Summary: Prompt management platform (web + Windows floating bubble/Electron); prompt optimization via Gemini API; Docker ready.
+   * Tech: React, Express, Electron, SQLite, Docker.
+
+6. **RASA Chatbot integrations** (used in projects)
+
+   * Role: Integrator
+   * Summary: RASA-based domain chatbots for EnMS guidance.
+
+7. **Agentic VS Code workflows**
+
+   * Role: Builder/Operator
+   * Summary: Custom agents inside VS Code that generate architecture, code tasks, review code, coordinate junior work, using GitHub Copilot Pro+.
+
+### C — Mobile / Games
+
+8. **Finger Chooser (Flutter)**
+
+   * Role: Developer / Product
+   * Summary: Multi-touch party game; Firebase + AdMob; localization (English & Arabic).
+
+### D — Research / ML / Vision
+
+9. **Brain Tumor Detection (CNN)** — 88.24% validation accuracy.
+10. **Smart Home ENMS** — forecasting (Random Forest), dockerized deployment.
+11. **K-Means clustering pipeline**
+12. **Bank Loan Classification, CIFAR-10 experiments, Dog vs Cat classification, Shape Descriptor Analysis**
+
+### E — Hardware & Integrations (important for portfolio)
+
+13. ESP32 Sensor Hub (MPU6050 accelerometer & gyro, MAX6675 thermocouple, DHT22) — MQTT publishing to Node-RED.
+14. Raspberry Pi 4 with OctoPrint bridging legacy 3D printers to SimplyPrint IoT cloud.
+15. Integration with Shelly smart plugs, Prusa APIs, OctoPrint.
+
+### F — Other relevant code / demos / live links
+
+* LAUDS demo link provided above.
+* GitHub: `github.com/raptorblingx` (some repos exist; some proprietary EU project code may be private — use screenshots/diagrams if code cannot be published).
+
+---
+
+## 9 — Portfolio requirements (what the agent must produce)
+
+* Brand name/title: use owner title above.
+* ~20 project entries, but **feature 6 main case studies** on homepage (LAUDS, HumanEnerDIA, AVAROS, Fin-CoPilot, PromptVault, Finger Chooser). Rest in Projects archive.
+* Each case study must include: problem, solution, role, architecture diagram (Mermaid or SVG), tech stack, demo/screenshots, code link or placeholder, measured/target impact, lessons learned, and "how AI/agents were used".
+* Systems page: 3 global architecture diagrams (EnMS / AVAROS / Fin-CoPilot) with hover/callout.
+* Blog: 3–6 posts (seeded): "Agentic Development in VS Code", "Building EnMS with OVOS", "EU R&D: from proposal to pilot" (MDX).
+* Contact page with CV download (PDF) and schedule/Calendly link optional.
+* SEO ready (OG tags, structured data). Lighthouse performance >85. Accessibility WCAG AA.
+
+---
+
+## 10 — Tech stack for the portfolio site (agent must implement)
+
+* **Next.js (latest) + React + MDX** for case studies
+* **Tailwind CSS**, dark mode toggle
+* **Vercel** for hosting (primary) or Cloudflare Pages alternative
+* Domain: register recommended `jarad.dev` (or chosen domain) — DNS via Cloudflare
+* GitHub Actions for lint/build/tests (optional; Vercel auto deploy acceptable)
+* Plausible analytics or GA4 (owner prefers privacy friendly)
+* Optional RAG Q&A (Chroma/Pinecone + serverless endpoint) — phase 2
+
+---
+
+## 11 — Deliverables & 4-week milestone plan (explicit)
+
+**Week 0 (day 0–3)**
+
+* Create repo `portfolio-website`, connect to Vercel.
+* Skeleton with Home, Projects grid, Case Study template.
+* Register domain placeholder `{{DOMAIN}}`.
+
+**Week 1 (days 4–10)**
+
+* Implement MDX pipeline; add 3 case studies (LAUDS, HumanEnerDIA, AVAROS) with images and diagrams.
+* Hero + Projects grid + dark mode.
+
+**Week 2 (days 11–17)**
+
+* Add 4–6 more projects (Fin-CoPilot, PromptVault, Finger Chooser, Smart Home ENMS).
+* Implement Systems page with interactive diagrams.
+
+**Week 3 (days 18–24)**
+
+* Blog with 3 posts; contact form; CV PDF; SEO meta & OG tags.
+* Lighthouse audit & fixes.
+
+**Week 4 (days 25–30)**
+
+* Polish, accessibility fixes, final deploy, README, instructions for MDX updates and how to add new projects.
+* Optional: implement RAG Q&A MVP and hook to MDX content (if owner OKs vector DB/LLM costs).
+
+---
+
+## 12 — Assets & information the agent must request if missing
+
+* Headshot photo (professional)
+* Owner CV PDF for download (latest)
+* Screenshots / Grafana dashboards (for LAUDS & HumanEnerDIA)
+* Architecture diagrams in SVG or source for creation (if none exist, generate Mermaid diagrams from provided system descriptions)
+* GitHub links where public; otherwise note “private repo — contact for access”
+* Demo links or credentials if public demos are behind auth (owner to provide)
+
+---
+
+## 13 — Outreach & hiring copy (ready templates)
+
+**Short LinkedIn message to hiring manager / CTO**
+
+> Hi [Name], I applied for the [Role] at [Company]. I build production AI systems (EU-funded projects: LAUDS, HumanEnerDIA, AVAROS) and design agentic development workflows that speed delivery. I’d love to briefly share two case studies that map directly to [Company]'s needs. Can we arrange a 15-minute chat?
+
+**Email subject for project pilot (Syria buses)**
+
+> Pilot proposal — low-cost bus booking MVP for [Operator Name]
+
+**Intro 1-pager headline**
+
+> Simple, fast pilot: digital ticketing + seat management for line X — launch in 2–4 weeks with low dev cost and revenue share model.
+
+(Agent can expand into tailored one-pagers.)
+
+---
+
+## 14 — Business & product notes (startup idea: Syria bus platform)
+
+* Mohamad is evaluating a bus booking SaaS/marketplace for Syria as a side project (pilot first, B2B SaaS to operators recommended as first route).
+* Pilot budget estimate: $1k–$5k for an MVP with one operator & one route.
+* Deal breakers: partner operator commitment, reliable local payment settlement (Sham Cash), regulatory or security issues, fuel price volatility.
+* Mohamad’s strategy: keep it side-project while securing a steady job; validate with 1 operator, 1 route and local marketing (WhatsApp / Telegram groups).
+
+---
+
+## 15 — Additional tactical items for agent to produce (priority list)
+
+1. `README.md` with local dev, build, deploy instructions and content update guidelines (MDX frontmatter spec).
+2. MDX content files for the top 6 case studies: LAUDS, HumanEnerDIA, AVAROS, Fin-CoPilot, PromptVault, Finger Chooser — fully populated frontmatter + body + Mermaid diagrams.
+3. `next.config.js` and `vercel.json` templates for deployment.
+4. GitHub Actions workflows for lint → build → deploy.
+5. A short “how to use / extend agents” doc: how Mohamad can later feed new projects to RAG system.
+6. Outreach templates and 3 tailored LinkedIn messages (CTO, recruiter, hiring manager).
+7. A `CV_download.pdf` page and `sitemap.xml` & `robots.txt`.
+
+---
+
+## 16 — Tone, style & content rules for the agent
+
+* Always be factual and conservative with claims (use “target”, “aims to” if no measured metric exists).
+* Emphasize: EU-funded projects, production deployments, leadership roles, agentic/AI-augmented workflows.
+* Avoid phrasing that devalues Mohamad’s role (do not say “AI wrote everything”). Instead: “I architected & orchestrated agentic workflows that produced X; I validated, integrated, and hardened outputs for production.”
+* When quantifying impact, prefer “target” or “expected” if no formal metric exists; prefer conservative round numbers.
+* Keep content scannable: bullet highlights, architecture diagrams, code/demo CTAs.
+
+---
+
+## 17 — Example MDX frontmatter template (agent should reuse)
+
+```yaml
+---
+title: "AVAROS — AI Digital Assistant for Sustainable Manufacturing"
+role: "Lead Developer"
+period: "2025–2026"
+funding: "EU - WASABI consortium"
+tags: ["AI", "Industrial", "WASABI", "OVOS", "Docker"]
+featuredImage: "/assets/avaros/hero.png"
+demoUrl: "https://lauds-demo.intel50001.com/" # or actual demo if different
+github: "https://github.com/raptorblingx/avaros"
+summary: "Lead developer on an AI assistant which integrates OVOS, DocuBoT and PREVENTION modules, deployed with Docker."
+metrics:
+  electricity_reduction_target: "8%"
+  co2_reduction_target: "10%"
+---
+```
+
+---
+
+## 18 — Final agent checklist before producing outputs
+
+* Confirm domain choice `{{DOMAIN}}` and email `{{EMAIL}}` are provided.
+* Create repo skeleton and push initial commit.
+* Populate top 6 MDX case studies (use provided project texts + generated architecture diagrams).
+* Deploy to Vercel with placeholder content and verify domain.
+* Produce README + deploy logs + PR to `main`.
+* Deliver outreach templates & LinkedIn headline suggestions.

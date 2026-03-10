@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# jarad.dev — Portfolio Website
+
+Personal portfolio and project showcase for **Mohamad Jarad** — AI-Augmented Systems Engineer & Lead Developer.
+
+**Live:** [jarad.dev](https://jarad.dev) (coming soon)
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, TypeScript)
+- **Styling:** Tailwind CSS v4
+- **Content:** MDX files (frontmatter + markdown)
+- **Animations:** Framer Motion
+- **Dark Mode:** next-themes
+- **Diagrams:** Mermaid.js
+- **Contact:** Resend API
+- **Hosting:** Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/                  # Next.js App Router pages
+  page.tsx            # Home
+  about/              # About page
+  projects/           # Projects listing + [slug] case studies
+  blog/               # Blog listing + [slug] posts
+  contact/            # Contact form
+  api/contact/        # Contact form API route
+components/           # Reusable React components
+content/
+  projects/           # MDX case study files
+  blog/               # MDX blog post files
+lib/
+  mdx.ts              # MDX reading utilities
+  types.ts            # TypeScript type definitions
+public/assets/        # Images, CV PDF, project screenshots
+```
 
-## Learn More
+## Adding a New Project
 
-To learn more about Next.js, take a look at the following resources:
+Create a new `.mdx` file in `content/projects/`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```mdx
+---
+title: "Project Name"
+role: "Your Role"
+period: "2024–2025"
+tags: ["AI", "Full-Stack"]
+featuredImage: "/assets/projects/project-hero.png"
+summary: "One-line summary."
+tier: 1
+featured: true
+metrics:
+  key_metric: "value"
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Your markdown content here...
+```
 
-## Deploy on Vercel
+- **tier: 1** — Full case study with detailed sections
+- **tier: 2** — Brief card with short description
+- **featured: true** — Shows on home page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding a Blog Post
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Create a new `.mdx` file in `content/blog/`:
+
+```mdx
+---
+title: "Post Title"
+date: "2025-01-15"
+tags: ["AI", "Development"]
+summary: "Brief description."
+---
+
+Your markdown content here...
+```
+
+## Environment Variables
+
+For the contact form to send emails:
+
+```
+RESEND_API_KEY=re_xxxxxxxxxxxx
+CONTACT_EMAIL=swe.jarad@gmail.com
+```
+
+Without `RESEND_API_KEY`, the contact form logs submissions to the console (development mode).
+
+## Deployment
+
+1. Push to GitHub
+2. Connect repo to [Vercel](https://vercel.com)
+3. Add environment variables in Vercel dashboard
+4. Deploy
+
+## Building
+
+```bash
+npm run build    # Builds + generates sitemap
+npm run start    # Serve production build locally
+```
+
+## License
+
+MIT

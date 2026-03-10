@@ -1,0 +1,84 @@
+---
+title: "AVAROS — AI Digital Assistant for Sustainable Manufacturing"
+role: "Lead Developer"
+period: "2025–2026"
+funding: "EU — WASABI Consortium"
+tags: ["AI", "Industrial", "EU R&D", "Docker", "IoT"]
+featuredImage: "/assets/projects/avaros-hero.png"
+demoUrl: ""
+github: ""
+summary: "Leading the design and integration of an AI digital assistant for sustainable manufacturing — integrating OVOS voice AI, DocuBoT, and PREVENTION modules under the EU WASABI consortium."
+tier: 1
+featured: true
+metrics:
+  electricity_reduction_target: "8%"
+  materials_efficiency_target: "5%"
+  co2_reduction_target: "10%"
+---
+
+## Problem
+
+Manufacturing facilities face significant challenges in achieving sustainability targets while maintaining productivity. Energy management is fragmented across multiple systems, documentation is scattered, and predictive maintenance is reactive. Facility operators lack unified, intelligent tools to monitor, optimize, and act on energy and sustainability data in real time.
+
+## My Role & Responsibilities
+
+- **Lead Developer** — primary technical leadership across the full system
+- Designed the overall system architecture integrating four major subsystems: RENERYO base, OVOS voice assistant, DocuBoT knowledge assistant, and PREVENTION predictive maintenance
+- Planned and defined Work Packages and API integration contracts
+- Supervised a junior developer — code reviews, task delegation, architectural guidance
+- Orchestrated AI-augmented development workflows using GitHub Copilot and custom VS Code agents to accelerate delivery
+- Managed Docker-Compose orchestration for the entire WASABI stack
+
+## Architecture
+
+<MermaidDiagram chart={`
+graph TB
+  subgraph "AVAROS System"
+    UI[Web Dashboard] --> API[FastAPI Backend]
+    VOICE[OVOS Voice Assistant] --> API
+    DOC[DocuBoT - Knowledge Assistant] --> API
+    PREV[PREVENTION - Predictive Maintenance] --> API
+    API --> DB[(TimescaleDB)]
+    API --> RENERYO[RENERYO EnMS Base]
+    RENERYO --> MQTT[MQTT Broker]
+    MQTT --> SENSORS[IoT Sensors & Actuators]
+  end
+  subgraph "Infrastructure"
+    DOCKER[Docker-Compose] --> UI
+    DOCKER --> API
+    DOCKER --> VOICE
+    DOCKER --> DOC
+    DOCKER --> PREV
+    DOCKER --> DB
+    DOCKER --> MQTT
+  end
+`} />
+
+## Tech Stack
+
+- **AI / NLP:** OVOS (Open Voice OS), DocuBoT (RAG-based document assistant), LLM integrations
+- **Backend:** FastAPI, Python, RENERYO energy management base
+- **Predictive Maintenance:** PREVENTION module — anomaly detection and predictive alerts
+- **Database:** TimescaleDB (PostgreSQL with time-series extensions)
+- **Infrastructure:** Docker-Compose, MQTT, Grafana dashboards
+- **IoT:** Sensor integration via MQTT and Modbus TCP
+
+## Results & Impact
+
+The AVAROS system targets measurable sustainability improvements for manufacturing facilities:
+
+- **~8% electricity reduction** through intelligent monitoring and optimization recommendations
+- **~5% materials efficiency improvement** via predictive analytics and waste reduction
+- **~10% CO₂ reduction** aligned with EU sustainability goals
+
+*These are target metrics defined by the WASABI consortium; final validation is ongoing through pilot deployments.*
+
+## Challenges & Lessons Learned
+
+- **Integrating four independent subsystems** (OVOS, DocuBoT, PREVENTION, RENERYO) into a cohesive product required careful API contract design and versioning strategy
+- **Leading a junior developer** while under EU project delivery pressure taught me the value of clear task decomposition and regular code review cadence
+- **Docker-Compose orchestration** for 8+ services across development and staging environments required careful volume management and health check configuration
+
+## How AI/Agents Were Used
+
+I architected and orchestrated agentic development workflows using GitHub Copilot Pro+ with custom VS Code agents. These agents generated architecture proposals, scaffold code, and review suggestions — I validated, integrated, and hardened all outputs for production reliability. This accelerated delivery significantly while maintaining code quality standards expected in EU-funded projects.

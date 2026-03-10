@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://jarad.dev
+
+# Sitemaps
+Sitemap: https://jarad.dev/sitemap.xml

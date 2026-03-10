@@ -1,0 +1,53 @@
+---
+title: "Why I Build With AI Agents (Not Just AI)"
+date: "2025-01-15"
+tags: ["AI", "Development", "Productivity"]
+summary: "The difference between using AI as a tool and orchestrating AI agents as collaborators — how agentic development workflows changed how I ship production software."
+---
+
+There's a meaningful difference between *using* AI to write code and building an *agentic development workflow* where AI agents collaborate with you as a system. I've been doing the latter for the past year across EU R&D projects, and the distinction matters.
+
+## AI-Assisted vs. AI-Augmented Development
+
+Most developers use AI as a smarter autocomplete. Ask a question, get an answer, copy-paste it in. That works, but it leaves enormous potential on the table.
+
+What I mean by **agentic development** is:
+
+1. **Custom VS Code agents** with domain-specific instructions (e.g., an agent that understands Docker-Compose orchestration for IoT stacks)
+2. **Multi-step workflows** where agents propose architecture, generate scaffold code, and review their own output
+3. **Human-in-the-loop validation** at every meaningful decision point — I never deploy agent output without review
+
+This isn't about replacing engineering judgment. It's about amplifying it.
+
+## A Concrete Example
+
+On the [AVAROS project](/projects/avaros), I needed to integrate four independent subsystems (OVOS, DocuBoT, PREVENTION, RENERYO) into a single Docker-Compose deployment. Each had its own API contracts, health checks, and volume requirements.
+
+Instead of manually writing all the integration code:
+
+1. I described the system architecture to a custom agent with context about each subsystem
+2. The agent proposed API contract interfaces and Docker-Compose service definitions
+3. I reviewed, corrected assumptions about network topology, and refined
+4. The agent generated integration tests based on the corrected contracts
+5. I ran the tests, fixed edge cases, and shipped
+
+Total time saved: roughly 40% compared to doing it from scratch. But more importantly, the *quality of the initial architecture* was higher because the agent could cross-reference patterns from thousands of similar deployments while I focused on domain-specific requirements.
+
+## The Orchestration Mindset
+
+The shift is from "developer who uses AI tools" to "developer who orchestrates AI agents." The key principles:
+
+- **Context is everything** — agents perform dramatically better with project-specific instructions and constraints
+- **Validate, don't trust** — every agent output gets human review before it matters
+- **Compound workflows** — chain multiple agents together, each with a specific role (architect, implementer, reviewer)
+- **Know when NOT to use agents** — some tasks are faster done manually; recognize the crossover point
+
+## What This Means for My Work
+
+Every project in my portfolio was built with agentic workflows. Not because I can't write the code myself — but because the combination of human expertise and AI augmentation produces better results, faster.
+
+If you're evaluating my work: the code quality, architecture decisions, and documentation you see are mine. The agents accelerated the path to get there.
+
+---
+
+*Want to discuss agentic development workflows for your team? [Get in touch](/contact).*

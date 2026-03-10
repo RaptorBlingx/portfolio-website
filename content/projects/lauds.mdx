@@ -1,0 +1,82 @@
+---
+title: "LAUDS — Human-Centric Energy Management Demonstrator"
+role: "Developer / Site Deployment"
+period: "2024–2025"
+funding: "EU — FabCity Hamburg"
+tags: ["IoT", "Industrial", "EU R&D", "Hardware"]
+featuredImage: "/assets/projects/lauds-hero.png"
+demoUrl: "https://lauds-demo.intel50001.com/"
+github: ""
+summary: "Deployed a modular energy management demonstrator across three FabCity Hamburg sites — built ESP32 sensor hubs, Node-RED data pipelines, and Grafana dashboards for real-time energy monitoring."
+tier: 1
+featured: true
+metrics:
+  sites_deployed: "3"
+  sensor_types: "5+"
+  live_demo: "Online"
+---
+
+## Problem
+
+FabCity Hamburg's urban fabrication labs (FabLabs) lacked visibility into their energy consumption. Equipment like 3D printers, laser cutters, and workshop tools consumed energy without any monitoring or optimization. The labs needed a human-centric, modular system that non-technical users could understand and interact with — not just engineers.
+
+## My Role & Responsibilities
+
+- Developed and deployed the full demonstrator across three FabCity sites: JUPITER OpenSpace, Fabulous St. Pauli, and FABRIC
+- Built custom **ESP32 sensor hubs** with MPU6050 (accelerometer/gyro), MAX6675 (thermocouple), and DHT22 (temperature/humidity) sensors
+- Integrated **Shelly smart plugs** for equipment-level power monitoring
+- Designed **Node-RED data pipelines** connecting sensors via MQTT to TimescaleDB
+- Created **Grafana dashboards** for real-time energy visualization
+- Integrated **Raspberry Pi 4 + OctoPrint** to bridge legacy 3D printers to SimplyPrint IoT cloud
+- Conducted on-site workshops demonstrating the system to FabLab operators
+
+## Architecture
+
+<MermaidDiagram chart={`
+graph TB
+  subgraph "FabLab Sites"
+    ESP[ESP32 Sensor Hubs] -->|MQTT| BROKER[MQTT Broker]
+    SHELLY[Shelly Smart Plugs] -->|MQTT| BROKER
+    RPI[Raspberry Pi + OctoPrint] -->|API| CLOUD[SimplyPrint Cloud]
+  end
+  subgraph "Data Pipeline"
+    BROKER --> NR[Node-RED]
+    NR --> DB[(TimescaleDB / PostgreSQL)]
+  end
+  subgraph "Visualization"
+    DB --> GRAFANA[Grafana Dashboards]
+    DB --> WEB[Web Demo Interface]
+  end
+`} />
+
+## Tech Stack
+
+- **Hardware:** ESP32 (custom sensor hubs), Raspberry Pi 4, Shelly Plus Plugs
+- **Sensors:** MPU6050 (accelerometer/gyro), MAX6675 (thermocouple), DHT22 (temperature/humidity)
+- **Data Pipeline:** MQTT, Node-RED
+- **Database:** PostgreSQL / TimescaleDB
+- **Visualization:** Grafana (custom dashboards)
+- **3D Print Integration:** OctoPrint, SimplyPrint, Prusa APIs
+- **Deployment:** On-site installations at 3 FabCity Hamburg locations
+
+## Demo
+
+The live demonstrator is available at **[lauds-demo.intel50001.com](https://lauds-demo.intel50001.com/)** — showing real-time energy data, sensor readings, and equipment status from the deployed FabLab sites.
+
+## Results & Impact
+
+- **3 FabLab sites successfully deployed** with full sensor coverage and real-time monitoring
+- **Human-centric interfaces** — dashboards designed for non-technical FabLab operators, not just engineers
+- **Validated through workshops** — on-site demonstrations with FabCity Hamburg community
+- **Modular architecture** — easily extensible to additional sites and sensor types
+- Bridge between legacy equipment (3D printers) and modern IoT cloud platforms via OctoPrint + SimplyPrint
+
+## Challenges & Lessons Learned
+
+- **Field deployment vs. lab prototype** — sensor hubs required robust enclosures, reliable WiFi connectivity handling, and graceful error recovery when MQTT connections dropped
+- **Legacy equipment integration** — older 3D printers without network capabilities required the Raspberry Pi + OctoPrint bridge approach, adding complexity but enabling full IoT integration
+- **User-centric dashboard design** — iterating with non-technical FabLab operators taught me that simpler visualizations with clear action items outperform information-dense dashboards
+
+## How AI/Agents Were Used
+
+AI-augmented development workflows were used to accelerate Node-RED flow design and Grafana dashboard configuration. Custom VS Code agents helped generate boilerplate for ESP32 firmware (sensor reading, MQTT publishing, error handling) which was then validated against hardware specifications and tested on physical devices.

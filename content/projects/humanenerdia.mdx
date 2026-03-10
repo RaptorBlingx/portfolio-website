@@ -1,0 +1,92 @@
+---
+title: "HumanEnerDIA — Intelligent Energy Management Assistant"
+role: "Core Developer / Integrator"
+period: "2024–2025"
+funding: "EU R&D"
+tags: ["AI", "Industrial", "EU R&D", "IoT", "Docker"]
+featuredImage: "/assets/projects/humanenerdia-hero.png"
+demoUrl: ""
+github: ""
+summary: "Built a production-ready energy management system with OVOS voice assistant, RASA chatbot, FastAPI analytics, and TimescaleDB — targeting ISO 50001 compliance and 30% technical effort reduction."
+tier: 1
+featured: true
+metrics:
+  effort_reduction_target: "30%"
+  iso_alignment: "ISO 50001"
+---
+
+## Problem
+
+Industrial energy management remains labor-intensive and technically demanding. Facility managers must manually interpret complex energy data, navigate regulatory requirements (ISO 50001), and make optimization decisions without intelligent support. Existing EnMS platforms lack accessible interfaces — no voice interaction, no conversational guidance, and no intelligent analytics to surface actionable insights.
+
+## My Role & Responsibilities
+
+- **Core Developer and System Integrator** for the full HumanEnerDIA platform
+- Built and integrated the OVOS voice assistant for hands-free energy data queries
+- Implemented RASA-based chatbot for text-based EnMS guidance and ISO 50001 workflow assistance
+- Developed FastAPI analytics backend with time-series aggregation and anomaly detection
+- Integrated LLM capabilities for natural language energy report generation
+- Designed Node-RED data pipelines connecting IoT sensors to TimescaleDB
+- Created Grafana dashboards for real-time energy monitoring
+
+## Architecture
+
+<MermaidDiagram chart={`
+graph TB
+  subgraph "User Interfaces"
+    VOICE[OVOS Voice Assistant]
+    CHAT[RASA Chatbot]
+    DASH[Grafana Dashboards]
+    WEB[Web UI]
+  end
+  subgraph "Backend Services"
+    API[FastAPI Analytics]
+    LLM[LLM Service]
+    NR[Node-RED Pipelines]
+  end
+  subgraph "Data Layer"
+    DB[(TimescaleDB)]
+    MQTT[MQTT Broker]
+  end
+  subgraph "IoT Layer"
+    SENSORS[Smart Plugs & Sensors]
+    METERS[Energy Meters]
+  end
+  VOICE --> API
+  CHAT --> API
+  WEB --> API
+  API --> DB
+  API --> LLM
+  NR --> DB
+  NR --> MQTT
+  MQTT --> SENSORS
+  MQTT --> METERS
+  DB --> DASH
+`} />
+
+## Tech Stack
+
+- **Voice AI:** OVOS (Open Voice OS) — custom skills for energy queries
+- **Chatbot:** RASA — domain-specific NLU for EnMS guidance
+- **Backend:** FastAPI (Python), LLM integrations for report generation
+- **Data Pipeline:** Node-RED, MQTT
+- **Database:** TimescaleDB (time-series optimized PostgreSQL)
+- **Visualization:** Grafana with custom energy dashboards
+- **Infrastructure:** Docker, Docker-Compose
+
+## Results & Impact
+
+- **Targets 30% reduction in technical effort** for energy management tasks through voice and chat interfaces
+- **ISO 50001 alignment** — chatbot provides guided workflows for compliance documentation
+- **Human-centric design** — reduced barrier to entry for facility operators who lack deep technical expertise in energy analytics
+- Production-quality microservices architecture ready for field deployment
+
+## Challenges & Lessons Learned
+
+- **OVOS custom skill development** required deep understanding of the voice pipeline and intent handling — documentation was sparse, requiring source code reading and community engagement
+- **Balancing RASA and LLM approaches** — used RASA for structured, deterministic workflows (ISO compliance steps) and LLMs for flexible natural language queries and report generation
+- **Time-series data volume** — TimescaleDB's chunking and compression features were critical for handling high-frequency sensor data without query performance degradation
+
+## How AI/Agents Were Used
+
+LLM integration serves two purposes in this project: (1) end-user facing — generating natural language energy reports and answering operator queries about energy consumption patterns; (2) development acceleration — using AI-augmented workflows to rapidly prototype FastAPI endpoints and Node-RED flow configurations before manual validation and hardening.
