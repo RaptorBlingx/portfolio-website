@@ -17,8 +17,8 @@ export default function ProjectsPage() {
       <FadeInUp>
         <h1 className="mb-2 text-3xl font-bold sm:text-4xl">Projects</h1>
         <p className="mb-10 text-lg text-[var(--muted)]">
-          EU R&amp;D, industrial AI, and production systems I&apos;ve built and
-          shipped.
+          AI-native systems I&apos;ve architected and shipped — from 7-agent swarms to
+          factory-floor voice assistants to 30+ machine IoT deployments.
         </p>
       </FadeInUp>
       <ProjectGrid projects={projects} />

@@ -12,7 +12,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <FadeInUp>
           <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-            AI-Augmented Software Engineer
+            AI-Native Software Engineer
           </p>
         </FadeInUp>
         <FadeInUp delay={0.1}>
@@ -25,10 +25,10 @@ export default function Home() {
         </FadeInUp>
         <FadeInUp delay={0.2}>
           <p className="mb-8 max-w-2xl text-lg text-[var(--muted)] leading-relaxed">
-            I design and ship production industrial AI systems and agent-driven
-            development workflows for EU-funded projects. I build AI assistants,
-            EnMS platforms, and scalable IoT pipelines — turning research and
-            proposals into running systems.
+            From 7-agent AI swarms on Gemini to voice-first factory assistants,
+            from custom ESP32 firmware to 19.2M-reading analytics platforms —
+            I architect, build, and ship production AI systems end-to-end.
+            Every project is AI-native: built with AI agents, powered by AI.
           </p>
         </FadeInUp>
         <FadeInUp delay={0.3}>
@@ -107,20 +107,20 @@ export default function Home() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                title: "AI & LLM Integration",
-                desc: "RAG pipelines, multi-agent systems, prompt engineering, voice & text assistants (OVOS, RASA, Gemini)",
+                title: "AI & Multi-Agent Systems",
+                desc: "7-agent AI swarms, RAG pipelines, OVOS voice skills, RASA chatbots, Gemini 2.5 Flash, LLM orchestration, prompt engineering",
               },
               {
-                title: "Industrial IoT",
-                desc: "ESP32 sensor hubs, MQTT, Modbus TCP, Grafana dashboards, real-time data pipelines",
+                title: "Industrial IoT & Hardware",
+                desc: "Custom ESP32 firmware (C++), MQTT/Modbus, 30+ monitored machines, Grafana dashboards, Node-RED pipelines, TimescaleDB",
               },
               {
-                title: "Full-Stack Development",
-                desc: "React, Next.js, FastAPI, Node.js, Flutter, Docker, PostgreSQL, TimescaleDB",
+                title: "Full-Stack & Mobile",
+                desc: "React, Next.js, FastAPI, Flutter, Electron, Docker-Compose, PostgreSQL, Firebase — web, mobile, and desktop",
               },
               {
-                title: "EU R&D Delivery",
-                desc: "End-to-end project delivery from proposal to production pilot, field deployments, ISO 50001",
+                title: "EU R&D & Production Delivery",
+                desc: "3 FabLab field deployments, WASABI consortium, ISO 50001 compliance, Clean Architecture, team leadership",
               },
             ].map((skill, i) => (
               <FadeInUp key={skill.title} delay={i * 0.1}>
@@ -140,11 +140,11 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 text-center">
         <FadeInUp>
           <h2 className="mb-4 text-2xl font-bold sm:text-3xl">
-            Let&apos;s build production AI systems
+            Let&apos;s build something real
           </h2>
           <p className="mb-6 text-[var(--muted)]">
-            Open to leadership roles, remote Applied AI positions, and EU
-            R&amp;D collaborations.
+            Open to AI engineering leadership, Applied AI roles, and EU
+            R&amp;D collaborations. I ship production systems, not prototypes.
           </p>
           <Link
             href="/contact"

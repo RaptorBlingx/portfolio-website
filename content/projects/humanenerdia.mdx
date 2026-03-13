@@ -1,33 +1,39 @@
 ---
-title: "HumanEnerDIA — Intelligent Energy Management Assistant"
-role: "Core Developer / Integrator"
+title: "HumanEnerDIA — AI-Powered Industrial Energy Management Platform"
+role: "Core Developer & System Integrator"
 period: "2024–2025"
 funding: "EU R&D"
 tags: ["AI", "Industrial", "EU R&D", "IoT", "Docker"]
 featuredImage: "/assets/projects/humanenerdia-hero.png"
 demoUrl: ""
 github: ""
-summary: "Built a production-ready energy management system with OVOS voice assistant, RASA chatbot, FastAPI analytics, and TimescaleDB — targeting ISO 50001 compliance and 30% technical effort reduction."
+summary: "Built a production-grade energy management platform with OVOS voice AI, RASA chatbot, FastAPI analytics, ML-powered anomaly detection, Sankey energy flows, ARIMA/Prophet forecasting, and 10 SOTA Grafana dashboards. Processing 19.2M energy readings across 8 machines, 138 baseline models, and 90 days continuous uptime. Targets 30% technical effort reduction and full ISO 50001 compliance."
 tier: 1
 featured: true
 metrics:
-  effort_reduction_target: "30%"
-  iso_alignment: "ISO 50001"
+  energy_readings: "19.2M"
+  total_kwh: "1.8M"
+  baseline_models: "138"
 ---
 
 ## Problem
 
-Industrial energy management remains labor-intensive and technically demanding. Facility managers must manually interpret complex energy data, navigate regulatory requirements (ISO 50001), and make optimization decisions without intelligent support. Existing EnMS platforms lack accessible interfaces — no voice interaction, no conversational guidance, and no intelligent analytics to surface actionable insights.
+Industrial energy management is labor-intensive, technically demanding, and fragmented. Facility managers manually interpret complex energy data, navigate ISO 50001 regulatory requirements without guidance, and make optimization decisions blind — no voice interaction, no conversational assistance, no intelligent analytics. Existing EnMS platforms are built for engineers, not operators. I built a platform that makes industrial energy intelligence accessible through voice, chat, and visual dashboards.
 
 ## My Role & Responsibilities
 
-- **Core Developer and System Integrator** for the full HumanEnerDIA platform
-- Built and integrated the OVOS voice assistant for hands-free energy data queries
-- Implemented RASA-based chatbot for text-based EnMS guidance and ISO 50001 workflow assistance
-- Developed FastAPI analytics backend with time-series aggregation and anomaly detection
-- Integrated LLM capabilities for natural language energy report generation
-- Designed Node-RED data pipelines connecting IoT sensors to TimescaleDB
-- Created Grafana dashboards for real-time energy monitoring
+- **Core Developer and System Integrator** for the entire HumanEnerDIA platform
+- Built and integrated the **OVOS voice assistant** — custom skills for hands-free energy data queries on the factory floor
+- Implemented the **RASA chatbot** for text-based EnMS guidance, ISO 50001 workflow assistance, and compliance documentation
+- Developed the **FastAPI analytics backend** with time-series aggregation, anomaly detection, ML model training, and forecasting
+- Built **6 KPI dashboards** with real-time metrics, radar charts, and trend analysis
+- Implemented **Sankey energy flow visualization** — Grid → Factory → Departments → individual Machines
+- Built **ARIMA/Prophet forecasting** with model performance tracking (R², RMSE, drift detection)
+- Developed **machine comparison analytics** — identified 468.2% energy efficiency differences and $1,136 savings potential between machines
+- Created **10 SOTA Grafana dashboards** (Factory Overview, Executive Summary, Anomaly Detection, Real-Time Production, Energy Cost Analytics, Environmental Impact, ISO 50001 EnPI, Machine Health, Operational Efficiency, Predictive Analytics)
+- Designed **Node-RED data pipelines** — MQTT → Parse → Route → Process → PostgreSQL
+- Built the **Factory Simulator REST API** (Swagger/OpenAPI) for testing and development
+- Integrated **LLM capabilities** for natural language energy report generation
 
 ## Architecture
 
@@ -36,43 +42,62 @@ graph TB
   subgraph "User Interfaces"
     VOICE[OVOS Voice Assistant]
     CHAT[RASA Chatbot]
-    DASH[Grafana Dashboards]
-    WEB[Web UI]
+    WEB[Web Dashboard — Analytics + KPIs]
+    GRAFANA[10 SOTA Grafana Dashboards]
   end
-  subgraph "Backend Services"
-    API[FastAPI Analytics]
-    LLM[LLM Service]
-    NR[Node-RED Pipelines]
+  subgraph "Intelligence Layer"
+    API[FastAPI Analytics Backend]
+    ML[ML Engine — ARIMA/Prophet]
+    ANOMALY[Anomaly Detection]
+    SANKEY[Sankey Energy Flow Engine]
+    COMPARE[Machine Comparison Analytics]
+    LLM[LLM Service — Report Generation]
   end
-  subgraph "Data Layer"
-    DB[(TimescaleDB)]
+  subgraph "Data Pipeline"
+    NR[Node-RED — MQTT→Parse→Route→Process]
+    SIM[Factory Simulator API]
     MQTT[MQTT Broker]
   end
+  subgraph "Data Layer"
+    DB[(TimescaleDB — 19.2M Readings)]
+    MODELS[138 Baseline Models]
+  end
   subgraph "IoT Layer"
-    SENSORS[Smart Plugs & Sensors]
+    PLUGS[Smart Plugs]
     METERS[Energy Meters]
+    SENSORS[Environmental Sensors]
   end
   VOICE --> API
   CHAT --> API
   WEB --> API
-  API --> DB
+  API --> ML
+  API --> ANOMALY
+  API --> SANKEY
+  API --> COMPARE
   API --> LLM
+  API --> DB
   NR --> DB
-  NR --> MQTT
-  MQTT --> SENSORS
-  MQTT --> METERS
-  DB --> DASH
+  MQTT --> NR
+  SIM --> MQTT
+  PLUGS --> MQTT
+  METERS --> MQTT
+  SENSORS --> MQTT
+  DB --> GRAFANA
+  DB --> MODELS
 `} />
 
 ## Tech Stack
 
-- **Voice AI:** OVOS (Open Voice OS) — custom skills for energy queries
-- **Chatbot:** RASA — domain-specific NLU for EnMS guidance
-- **Backend:** FastAPI (Python), LLM integrations for report generation
-- **Data Pipeline:** Node-RED, MQTT
-- **Database:** TimescaleDB (time-series optimized PostgreSQL)
-- **Visualization:** Grafana with custom energy dashboards
+- **Voice AI:** OVOS (Open Voice OS) — custom skills for hands-free energy queries
+- **Chatbot:** RASA — domain-specific NLU for EnMS guidance and ISO 50001 compliance workflows
+- **Backend:** FastAPI (Python) — analytics, ML training, anomaly detection, forecasting
+- **ML/Forecasting:** ARIMA, Prophet — with R², RMSE tracking and drift detection
+- **LLM Integration:** Natural language report generation and operator query handling
+- **Data Pipeline:** Node-RED (MQTT → Parse → Route → Process → PostgreSQL), Factory Simulator API
+- **Database:** TimescaleDB — time-series optimized PostgreSQL handling 19.2M+ readings
+- **Visualization:** 10 Grafana SOTA dashboards + custom web analytics (Sankey diagrams, KPI charts, radar charts, heatmaps)
 - **Infrastructure:** Docker, Docker-Compose
+- **Standards:** ISO 50001 framework alignment
 
 ## Platform Screenshots
 
@@ -123,17 +148,21 @@ graph TB
 
 ## Results & Impact
 
-- **Targets 30% reduction in technical effort** for energy management tasks through voice and chat interfaces
-- **ISO 50001 alignment** — chatbot provides guided workflows for compliance documentation
+- **19.2M energy readings processed** across 8 active machines — 1.8M total kWh tracked over 90 days continuous operation
+- **138 baseline ML models** trained for energy pattern detection across all monitored equipment
+- **468.2% energy efficiency gap** identified between best and worst-performing machines — $1,136 annual savings potential surfaced automatically
+- **10 SOTA Grafana dashboards** — Factory Overview (222 kW live gauge), Executive Summary (56 MWh, $7K cost, 25,385 kg CO₂), Real-Time Production, Cost Analytics (€10.2K monthly, -23.7% variance, €2.44K savings), and 6 more
+- **Targets 30% reduction in technical effort** through voice and chat interfaces that replace manual data interpretation
+- **ISO 50001 compliance support** — chatbot provides guided workflows for documentation and audit preparation
 - **Human-centric design** — reduced barrier to entry for facility operators who lack deep technical expertise in energy analytics
-- Production-quality microservices architecture ready for field deployment
 
 ## Challenges & Lessons Learned
 
-- **OVOS custom skill development** required deep understanding of the voice pipeline and intent handling — documentation was sparse, requiring source code reading and community engagement
-- **Balancing RASA and LLM approaches** — used RASA for structured, deterministic workflows (ISO compliance steps) and LLMs for flexible natural language queries and report generation
-- **Time-series data volume** — TimescaleDB's chunking and compression features were critical for handling high-frequency sensor data without query performance degradation
+- **OVOS custom skill development** — sparse documentation required reading source code, engaging with the community, and building deep understanding of the voice pipeline and intent handling system
+- **Balancing RASA and LLM approaches** — used RASA for structured, deterministic workflows (ISO compliance steps) and LLMs for flexible natural language queries and report generation. The boundary between them required careful design.
+- **Time-series data volume at scale** — 19.2M readings required TimescaleDB's chunking, compression, and continuous aggregates to maintain sub-second query performance
+- **ML model lifecycle** — managing 138 baseline models with drift detection, retraining schedules, and performance monitoring (R², RMSE) across 8 machines simultaneously
 
 ## How AI/Agents Were Used
 
-LLM integration serves two purposes in this project: (1) end-user facing — generating natural language energy reports and answering operator queries about energy consumption patterns; (2) development acceleration — using AI-augmented workflows to rapidly prototype FastAPI endpoints and Node-RED flow configurations before manual validation and hardening.
+LLM integration serves three purposes: (1) end-user facing — generating natural language energy reports and answering operator queries about consumption patterns; (2) ML pipeline — ARIMA/Prophet forecasting with automated drift detection and model retraining; (3) development acceleration — using agentic VS Code workflows to rapidly prototype FastAPI endpoints, Node-RED flow configurations, and Grafana dashboard JSON before manual validation and production hardening.

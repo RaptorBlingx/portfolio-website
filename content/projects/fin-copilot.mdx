@@ -1,75 +1,118 @@
 ---
-title: "Fin-CoPilot — Conversational AI Finance App"
-role: "Architect / Integrator"
+title: "Fin Co-Pilot — 7-Agent AI Swarm Finance App"
+role: "Sole Architect & Developer"
 period: "2024–2025"
 funding: ""
 tags: ["AI", "Mobile", "Flutter"]
 featuredImage: "/assets/projects/fin-copilot-hero.png"
 demoUrl: ""
-github: "https://github.com/RaptorBlingx/fin-copilot"
-summary: "Designed and built a Flutter-based conversational personal finance app with Google Gemini 2.5 Flash multi-agent architecture for intelligent expense tracking and financial insights."
+github: "https://github.com/RaptorBlingx/fin-co-pilot"
+summary: "Architected and shipped a premium Flutter finance app powered by a 7-agent AI swarm on Google Gemini 2.5 Flash — featuring conversational expense tracking, receipt OCR, voice input, price intelligence with barcode scanning, and real-time budget coaching. 15 milestones delivered across 20+ features."
 tier: 1
 featured: true
 metrics:
-  agents: "Multi-agent"
-  platform: "Cross-platform"
+  agents: "7-Agent Swarm"
+  platform: "iOS + Android"
+  milestones: "15 Shipped"
 ---
 
 ## Problem
 
-Personal finance apps are typically form-heavy and tedious. Users must manually categorize expenses, navigate complex screens, and interpret charts themselves. There's an opportunity to make personal finance management conversational and intelligent — let users simply talk about their spending and get actionable insights back.
+Personal finance apps are form-heavy, passive, and dumb. Users manually fill category dropdowns, struggle with charts, and get zero proactive guidance. I saw an opportunity to eliminate all of that — build a finance app where you **just talk**, and a swarm of specialized AI agents handles everything: parsing, categorizing, validating, learning your patterns, scanning receipts, tracking item-level spending, and coaching you in real-time.
 
 ## My Role & Responsibilities
 
-- **Architected the full system** — Flutter frontend, Firebase backend, and multi-agent AI layer
-- Designed the **multi-agent architecture** using Google Gemini 2.5 Flash for expense parsing, categorization, and financial insight generation
-- Built the **conversational UI** for natural language expense entry ("I spent 50 on groceries today")
-- Integrated Firebase for authentication, real-time database, and cloud functions
-- Implemented **ML-powered categorization** that learns from user patterns over time
+- **Sole architect and developer** — designed and shipped the entire system end-to-end across 15 milestones
+- Designed the **7-agent AI swarm architecture** on Gemini 2.5 Flash — each agent owns a specific cognitive task
+- Built the **premium conversational UI** with animated typing indicators, dynamic quick-action chips, and contextual greetings
+- Implemented **receipt OCR** via Gemini Vision — photograph any receipt and the AI extracts every line item automatically
+- Built **voice input** (speech-to-text) for hands-free expense dictation
+- Shipped a full **Price Intelligence system** — barcode/QR scanning, price history tracking, deal surfacing, purchase predictions, and store comparison
+- Integrated biometric auth (Face ID / fingerprint), push notifications with intelligent thresholds, and PDF/CSV report export
+- Migrated all agents to `firebase_ai` v3.4.0 SDK for production stability
 
 ## Architecture
 
+The intelligence layer is a **fault-tolerant 7-agent swarm** where each agent specializes in one task:
+
 <MermaidDiagram chart={`
 graph TB
-  subgraph "Client"
-    APP[Flutter App] --> CHAT[Conversational UI]
-    APP --> DASH[Dashboard & Charts]
+  subgraph "Flutter Client"
+    CHAT[Premium Chat UI] --> VOICE[Voice Input]
+    CHAT --> RECEIPT[Receipt Camera]
+    DASH[Hero Dashboard] --> INSIGHTS[AI Insight Carousel]
+    DASH --> BUDGET[Budget Gauges]
+    PRICE[Price Intelligence] --> SCAN[Barcode Scanner]
   end
-  subgraph "AI Layer"
-    CHAT -->|Natural Language| GEMINI[Gemini 2.5 Flash]
-    GEMINI --> PARSER[Expense Parser Agent]
-    GEMINI --> INSIGHT[Insight Generator Agent]
-    GEMINI --> BUDGET[Budget Advisor Agent]
+  subgraph "7-Agent AI Swarm · Gemini 2.5 Flash"
+    ORCH[Agent 1: ORCHESTRATOR — The Brain]
+    ORCH --> EXT[Agent 2: EXTRACTOR — NL → Data]
+    ORCH --> VAL[Agent 3: VALIDATOR — Field Checks]
+    ORCH --> CTX[Agent 4: CONTEXT — Suggestions]
+    ORCH --> REC[Agent 5: RECEIPT — Gemini Vision OCR]
+    ORCH --> ITEM[Agent 6: ITEM TRACKER — Line Items]
+    ORCH --> PAT[Agent 7: PATTERN LEARNER — Behavioral]
   end
-  subgraph "Backend"
-    PARSER --> FB[Firebase]
-    INSIGHT --> FB
-    FB --> AUTH[Authentication]
-    FB --> RTDB[Realtime Database]
-    FB --> CF[Cloud Functions]
+  subgraph "Firebase Backend"
+    AUTH[Google/Apple Sign-In + Biometrics]
+    FS[Cloud Firestore]
+    FCM[Push Notifications]
+    CF[Cloud Functions — Scheduled Jobs]
+    CRASH[Crashlytics + Analytics]
   end
+  CHAT --> ORCH
+  RECEIPT --> REC
+  EXT --> FS
+  PAT --> FS
+  CF --> FCM
 `} />
 
 ## Tech Stack
 
-- **Frontend:** Flutter (Dart) — cross-platform (iOS, Android)
-- **AI:** Google Gemini 2.5 Flash — multi-agent setup (parser, insight generator, budget advisor)
-- **Backend:** Firebase (Authentication, Realtime Database, Cloud Functions)
-- **State Management:** Provider / Riverpod pattern
+- **Frontend:** Flutter 3.x (Dart 3.5+) — premium Material Design 3 with dark/light mode
+- **State Management:** Riverpod 2.x
+- **Navigation:** GoRouter 15.x with custom page transitions
+- **AI / LLM:** Google Gemini 2.5 Flash via `firebase_ai` — 7-agent swarm architecture
+- **Vision:** Gemini Vision for receipt OCR and item extraction
+- **Voice:** `speech_to_text` for hands-free input
+- **Backend:** Firebase (Firestore, Auth, Storage, Cloud Functions, Crashlytics, Analytics)
+- **Charts:** fl_chart 0.68 — spending trends, category breakdowns, budget gauges
+- **Notifications:** Firebase Cloud Messaging + local notifications (budget alerts at 50%/80%/100%, daily summaries, price drops, coaching tips)
+- **Security:** Biometric auth (`local_auth`), encrypted storage (`flutter_secure_storage`), Firebase Security Rules
+- **Scanning:** `mobile_scanner` for barcode/QR code product lookup
+- **Export:** PDF + CSV report generation with share functionality
+- **OTA Updates:** Shorebird for instant over-the-air patches
+- **Animations:** `flutter_animate`, Lottie, shimmer loading states
+
+## Key Features Delivered
+
+### Conversational AI Copilot
+The core interface — describe any transaction in plain English ("I spent $45 at Target on groceries") and the agent swarm handles intent classification, data extraction, validation, and confirmation. Smart follow-up questions ask only what's needed, one question at a time.
+
+### Price Intelligence System
+A full price tracking engine: barcode/QR scanning for instant lookup, price history monitoring across stores, Deal of the Day surfacing, trending deals, wishlist with price drop alerts, store comparison rankings, and purchase predictions ("You usually buy milk every 4 days — need it soon?").
+
+### Receipt Scanning & Item-Level Tracking
+Point your camera at any receipt — Gemini Vision OCR extracts every line item automatically. Not just "Groceries $47" but "Milk, eggs, bread, chicken" with individual item profiles and spending patterns.
+
+### Proactive Financial Coaching
+The Pattern Learner agent monitors your behavior and surfaces timely coaching tips. Budget threshold alerts at 50%/80%/100%. Weekly AI-personalized financial wisdom. Daily spending summaries. Milestone achievements for financial wins.
 
 ## Results & Impact
 
-- **Natural language expense tracking** — users can add expenses conversationally instead of filling forms
-- **Multi-agent architecture** demonstrates practical LLM integration at the application layer
-- **Cross-platform** — single Flutter codebase for iOS and Android
-- Showcases modern AI product thinking — turning an LLM capability into a usable product feature
+- **7-agent AI swarm** — one of the most sophisticated multi-agent mobile architectures: Orchestrator, Extractor, Validator, Context Agent, Receipt OCR, Item Tracker, Pattern Learner
+- **15 milestones shipped** — from authentication to AI agents to price intelligence to final UI polish
+- **Zero-form expense tracking** — the entire transaction flow is conversational
+- **Full product delivery** — authentication, onboarding, dashboard, analytics, budgets, reports, notifications, price intelligence, coaching — not a prototype, a complete product
+- **SDK migration completed** — upgraded all 7 agents to `firebase_ai` v3.4.0 for production stability
 
 ## Challenges & Lessons Learned
 
-- **Gemini response consistency** — structured output from LLMs requires careful prompt engineering and validation; implemented fallback parsing for edge cases
-- **Multi-agent coordination** — defining clear responsibilities for each agent (parsing vs. insights vs. budgeting) prevented overlapping responses
-- **Offline-first considerations** — financial data needs to work offline; implemented local caching with sync-on-connectivity pattern
+- **7-agent coordination** — defining strict responsibilities for each agent (extraction vs. validation vs. pattern learning) and building the Orchestrator to route and synthesize across all of them required careful prompt engineering and fallback chains
+- **Gemini Vision for receipts** — OCR quality varies wildly across receipt formats; implemented multi-pass extraction with validation against expected totals
+- **Price Intelligence at scale** — monitoring prices across stores with rate limiting, caching, and intelligent refresh scheduling
+- **Firebase Security Rules** — UID-scoped rules with composite indexes across 15+ feature modules required careful planning to avoid query conflicts
 
 ## How AI/Agents Were Used
 
-This project is AI-native: the core product feature is multi-agent LLM interaction. Beyond the product itself, agentic VS Code workflows accelerated Flutter widget development and Firebase integration patterns. I orchestrated the architecture design through custom agents, then validated and refined outputs for production quality.
+This is an **AI-native product** at every layer. The app itself IS a multi-agent AI system — 7 specialized agents working in concert to handle every aspect of personal finance. Beyond the product, I used agentic VS Code workflows (GitHub Copilot Pro+ with custom agents) to accelerate development across all 15 milestones. The agents generated scaffold code, architecture proposals, and review suggestions — I validated, integrated, and shipped.

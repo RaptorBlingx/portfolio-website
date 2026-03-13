@@ -1,73 +1,98 @@
 ---
-title: "PromptVault Pro — Prompt Management Platform"
-role: "Creator / Architect"
+title: "PromptVault Pro — Dual-Platform Prompt Engineering Suite"
+role: "Creator & Solo Developer"
 period: "2024–2025"
 funding: ""
 tags: ["AI", "Full-Stack", "Desktop"]
 featuredImage: "/assets/projects/promptvault-hero.png"
 demoUrl: ""
-github: "https://github.com/RaptorBlingx/promptvault-pro"
-summary: "Built a full-stack prompt management platform with a web dashboard and Windows floating bubble (Electron) for instant prompt access — includes prompt optimization via Gemini API."
+github: "https://github.com/RaptorBlingx/PromptVault"
+summary: "Built a dual-platform prompt management system: a React + TypeScript web dashboard with command palette, version history, and Gemini-powered optimization — plus an Electron floating bubble for Windows with global hotkey instant access. Docker-ready, offline-first, zero-config."
 tier: 1
 featured: true
 metrics:
   platforms: "Web + Desktop"
-  optimization: "AI-powered"
+  optimization: "Gemini AI"
+  architecture: "Offline-First"
 ---
 
 ## Problem
 
-Developers and AI practitioners accumulate dozens of prompts across projects, but have no centralized way to organize, version, optimize, and quickly access them. Copy-pasting from notes or scattered documents is inefficient. There's a need for a purpose-built tool that makes prompt management fast and adds intelligence for optimization.
+Developers and AI practitioners accumulate dozens — sometimes hundreds — of carefully crafted prompts across projects. They're scattered in notes, docs, and chat histories with no way to organize, version, search, or optimize them. Switching windows to copy prompts breaks flow. I built a dedicated tool that makes prompt management instant and adds AI intelligence for optimization.
 
 ## My Role & Responsibilities
 
-- **Created the entire product** from concept to working application
-- Designed and built the **React web dashboard** for prompt CRUD, tagging, search, and organization
-- Built the **Electron desktop bubble** — a floating Windows widget for instant prompt access without switching windows
-- Integrated **Gemini API for prompt optimization** — analyzes prompts and suggests improvements for clarity, specificity, and effectiveness
-- Set up **Docker-ready deployment** for the full stack
-- Designed the SQLite data model for offline-first prompt storage
+- **Created the entire product** from concept to multi-platform shipping application
+- Designed and built the **React 18 + TypeScript web dashboard** with Vite — folder-based organization, smart variables (`{{variable}}` syntax), command palette (`Ctrl+K`), version history with one-click restore, dark/light mode
+- Built the **Electron floating bubble** for Windows — an always-on-top widget with global hotkey (`Ctrl+Shift+V`), instant search, variable fill dialogs, and one-click copy
+- Integrated **Google Gemini API** for AI-powered prompt analysis and optimization suggestions
+- Engineered **Docker multi-stage deployment** with Nginx reverse proxy and supervisord process management
+- Designed the **SQLite offline-first architecture** — prompts are always available, even without internet
 
 ## Architecture
 
 <MermaidDiagram chart={`
 graph TB
-  subgraph "Desktop"
-    BUBBLE[Electron Floating Bubble] --> LOCAL[Local SQLite DB]
-    BUBBLE -->|Optimize| GEMINI[Gemini API]
+  subgraph "Windows Desktop"
+    BUBBLE[Electron Floating Bubble] -->|Global Hotkey| SEARCH[Instant Search]
+    BUBBLE --> VARS[Variable Fill Dialog]
+    BUBBLE --> COPY[One-Click Copy]
+    BUBBLE -->|HTTP API| SERVER
   end
-  subgraph "Web"
-    REACT[React Dashboard] --> API[Express API]
-    API --> DB[(SQLite)]
-    API -->|Optimize| GEMINI
+  subgraph "Web Dashboard"
+    REACT[React 18 + TypeScript + Vite] --> CMD[Command Palette — Ctrl+K]
+    REACT --> FOLDERS[Folder Organization]
+    REACT --> VER[Version History — Last 5]
+    REACT --> SMART[Smart Variables]
+    REACT -->|REST API| SERVER
   end
-  subgraph "Sync"
-    LOCAL -.->|Sync| DB
+  subgraph "Server — Ubuntu"
+    SERVER[Express.js API — 11+ Endpoints]
+    SERVER --> DB[(SQLite — Offline-First)]
+    SERVER -->|Optimize| GEMINI[Google Gemini API]
+  end
+  subgraph "Deployment"
+    DOCKER[Docker Multi-Stage Build]
+    DOCKER --> NGINX[Nginx Reverse Proxy]
+    DOCKER --> SUPER[Supervisord]
   end
 `} />
 
 ## Tech Stack
 
-- **Frontend:** React (web dashboard)
-- **Desktop:** Electron (Windows floating bubble widget)
-- **Backend:** Express.js (Node.js)
-- **Database:** SQLite (offline-first, portable)
-- **AI:** Gemini API for prompt analysis and optimization suggestions
-- **Infrastructure:** Docker, Docker-Compose
+- **Frontend:** React 18, TypeScript, Vite — custom CSS design system with dark/light theming
+- **Desktop:** Electron — floating bubble with IPC, global hotkey (`Ctrl+Shift+V`), system tray
+- **Backend:** Express.js — 11+ REST endpoints (CRUD, folders, export/import, health)
+- **Database:** SQLite via `better-sqlite3` — offline-first, zero-config, portable
+- **AI:** Google Gemini API for prompt analysis, scoring, and optimization suggestions
+- **Icons:** Lucide React
+- **Deployment:** Docker multi-stage build, Nginx reverse proxy, supervisord process management
+- **Language Mix:** TypeScript 85.8%, CSS 12.2%
+
+## Key Features
+
+### Web Dashboard
+A power-user interface for managing your prompt library: folder-based organization with custom icons, **command palette** (`Ctrl+K`) for instant search and actions, **version history** (auto-saves last 5 versions with one-click restore), **smart variables** (`{{variable}}` syntax for dynamic prompts), pin-to-top favorites, full JSON import/export, and AI-powered optimization.
+
+### Floating Bubble (Windows)
+An always-on-top floating widget that lives on your desktop. Toggle with `Ctrl+Shift+V`, search your entire prompt library instantly, fill template variables via dialog, copy with one click — all without switching windows. Real-time sync with the web server.
+
+### AI Prompt Optimization
+Feed any prompt to the Gemini API and get concrete improvement suggestions — better clarity, specificity, structure, and effectiveness. Not generic advice: the optimizer analyzes your actual prompt structure and suggests targeted rewrites.
 
 ## Results & Impact
 
-- **Two-platform delivery** — web dashboard for management, desktop bubble for instant access
-- **AI-powered prompt optimization** — Gemini analyzes prompt structure and suggests improvements
-- **Offline-first architecture** — SQLite ensures prompts are available without internet connectivity
-- Demonstrates full product thinking: identifying a real workflow pain point and building a complete solution
+- **Two-platform delivery** — web for management, desktop bubble for instant access without context switching
+- **Offline-first by design** — SQLite ensures prompts are always available, regardless of connectivity
+- **Zero-config deployment** — `docker compose up` → fully working system with Nginx, Express, and React
+- **Full product thinking** — identified a real workflow bottleneck in AI-augmented development and built a complete solution from concept to installable desktop app
 
 ## Challenges & Lessons Learned
 
-- **Electron performance** — keeping the floating bubble lightweight required careful dependency management and lazy loading; minimized bundle size to under 50MB
-- **Prompt optimization quality** — the Gemini-based optimizer needed carefully designed meta-prompts to provide consistently useful suggestions rather than generic advice
-- **Cross-platform sync** — designing the sync mechanism between desktop SQLite and web API required conflict resolution logic
+- **Electron performance** — keeping the floating bubble lightweight required aggressive dependency management and lazy loading; minimized bundle size to stay responsive
+- **Prompt optimization quality** — the Gemini-based optimizer needed carefully designed meta-prompts to provide consistently useful, non-generic suggestions
+- **IPC architecture** — designing reliable Electron main/renderer process communication with the Express backend required careful error handling and state synchronization
 
 ## How AI/Agents Were Used
 
-The product itself integrates AI for prompt optimization. Development was also AI-augmented — I used custom VS Code agents to scaffold the Express API, generate React components, and design the Electron IPC communication layer. All generated code was reviewed, tested, and refined for production quality.
+The product itself integrates Gemini for prompt optimization — it's an AI tool for AI practitioners. Development was fully AI-augmented: I used GitHub Copilot and custom VS Code agents to scaffold the Express API, generate React components, design the Electron IPC layer, and write the Docker/Nginx configuration. All agent outputs were reviewed, tested, and hardened for production quality.
