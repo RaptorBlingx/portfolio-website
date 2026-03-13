@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 import type { ProjectFrontmatter, BlogFrontmatter } from "./types";
 
@@ -18,8 +18,8 @@ export function getProjects(): ProjectFrontmatter[] {
     } as ProjectFrontmatter;
   });
   return projects.sort((a, b) => {
-    const yearA = parseInt(a.period.split("–")[0]);
-    const yearB = parseInt(b.period.split("–")[0]);
+    const yearA = Number.parseInt(a.period.split("–")[0], 10);
+    const yearB = Number.parseInt(b.period.split("–")[0], 10);
     return yearB - yearA;
   });
 }
@@ -84,5 +84,5 @@ export function getAllTags(): string[] {
   const projects = getProjects();
   const tagSet = new Set<string>();
   projects.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
-  return Array.from(tagSet).sort();
+  return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
 }

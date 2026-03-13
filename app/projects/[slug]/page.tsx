@@ -5,6 +5,7 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/mdx";
 import { MermaidDiagram } from "@/components/MermaidDiagram";
+import { ImageGallery } from "@/components/ImageGallery";
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -32,7 +33,10 @@ export async function generateMetadata({
 
 const mdxComponents = {
   MermaidDiagram,
-  img: (props: React.ComponentProps<typeof Image> & { src: string; alt: string }) => (
+  ImageGallery,
+  img: (
+    props: Readonly<React.ComponentProps<typeof Image> & { src: string; alt: string }>
+  ) => (
     <Image
       {...props}
       width={800}
@@ -46,7 +50,7 @@ const mdxComponents = {
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  readonly params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
@@ -162,7 +166,7 @@ export default async function ProjectPage({
                 >
                   <p className="text-2xl font-bold text-primary">{value}</p>
                   <p className="text-xs text-[var(--muted)] capitalize">
-                    {key.replace(/_/g, " ")}
+                    {key.replaceAll("_", " ")}
                   </p>
                 </div>
               ))}

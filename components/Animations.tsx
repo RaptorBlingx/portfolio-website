@@ -18,9 +18,9 @@ export function FadeInUp({
   delay = 0,
   className,
 }: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
+  readonly children: ReactNode;
+  readonly delay?: number;
+  readonly className?: string;
 }) {
   return (
     <motion.div
@@ -41,9 +41,9 @@ export function FadeIn({
   delay = 0,
   className,
 }: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
+  readonly children: ReactNode;
+  readonly delay?: number;
+  readonly className?: string;
 }) {
   return (
     <motion.div

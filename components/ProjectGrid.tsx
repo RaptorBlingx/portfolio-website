@@ -9,12 +9,17 @@ export function ProjectGrid({
   projects,
   showFilters = true,
 }: {
-  projects: ProjectFrontmatter[];
-  showFilters?: boolean;
+  readonly projects: ProjectFrontmatter[];
+  readonly showFilters?: boolean;
 }) {
   const [activeTag, setActiveTag] = useState<string>("All");
 
-  const allTags = ["All", ...Array.from(new Set(projects.flatMap((p) => p.tags))).sort()];
+  const allTags = [
+    "All",
+    ...Array.from(new Set(projects.flatMap((p) => p.tags))).sort((a, b) =>
+      a.localeCompare(b)
+    ),
+  ];
 
   const filtered = activeTag === "All"
     ? projects

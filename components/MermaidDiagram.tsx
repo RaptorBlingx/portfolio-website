@@ -9,7 +9,7 @@ mermaid.initialize({
   securityLevel: "loose",
 });
 
-export function MermaidDiagram({ chart }: { chart: string }) {
+export function MermaidDiagram({ chart }: { readonly chart: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

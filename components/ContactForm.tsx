@@ -1,17 +1,23 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+
+type SubmitLikeEvent = {
+  preventDefault: () => void;
+  currentTarget: HTMLFormElement;
+};
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function submitForm(e: SubmitLikeEvent) {
     e.preventDefault();
     setStatus("sending");
     setErrorMsg("");
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     // Honeypot check — bots fill this hidden field
     if (formData.get("website")) {
@@ -38,11 +44,15 @@ export function ContactForm() {
       }
 
       setStatus("success");
-      (e.target as HTMLFormElement).reset();
+      form.reset();
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
     }
+  }
+
+  function handleSubmit(e: SubmitLikeEvent) {
+    void submitForm(e);
   }
 
   return (

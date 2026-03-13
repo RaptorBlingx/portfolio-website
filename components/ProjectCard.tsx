@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ProjectFrontmatter } from "@/lib/types";
 
-export function ProjectCard({ project }: { project: ProjectFrontmatter }) {
+export function ProjectCard({ project }: { readonly project: ProjectFrontmatter }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
