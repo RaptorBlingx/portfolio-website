@@ -29,13 +29,18 @@ export function ProjectCardSlider({
 
   return (
     <div className="relative aspect-video overflow-hidden bg-[var(--muted-bg)]">
-      <Image
-        src={safeImages[activeIndex]}
-        alt={alt}
-        fill
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
+      {safeImages.map((image, index) => (
+        <Image
+          key={`${image}-${index}`}
+          src={image}
+          alt={alt}
+          fill
+          className={`object-cover transition-all duration-700 ease-in-out group-hover:scale-105 ${
+            index === activeIndex ? "opacity-100" : "opacity-0"
+          }`}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      ))}
 
       {safeImages.length > 1 && (
         <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5">

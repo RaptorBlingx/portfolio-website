@@ -29,13 +29,18 @@ export function ProjectHeroSlider({
 
   return (
     <div className="relative mb-10 aspect-video overflow-hidden rounded-xl bg-[var(--muted-bg)]">
-      <Image
-        src={safeImages[activeIndex]}
-        alt={alt}
-        fill
-        className="object-cover"
-        priority
-      />
+      {safeImages.map((image, index) => (
+        <Image
+          key={`${image}-${index}`}
+          src={image}
+          alt={alt}
+          fill
+          className={`object-cover transition-opacity duration-700 ease-in-out ${
+            index === activeIndex ? "opacity-100" : "opacity-0"
+          }`}
+          priority={index === 0}
+        />
+      ))}
 
       {safeImages.length > 1 && (
         <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">

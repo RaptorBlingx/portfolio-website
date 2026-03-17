@@ -182,6 +182,22 @@ export default async function ProjectPage({
       {/* Hero image */}
       <ProjectHeroSlider images={heroImages} alt={frontmatter.title} />
 
+      {heroImages.length > 1 && (
+        <section className="mb-10">
+          <h2 className="mb-3 text-xl font-semibold">Full-Size Visuals</h2>
+          <p className="mb-4 text-sm text-[var(--muted)]">
+            All card visuals are available here in large view for detailed reading.
+          </p>
+          <ImageGallery
+            images={heroImages.map((src, index) => ({
+              src,
+              alt: `${frontmatter.title} screenshot ${index + 1}`,
+            }))}
+            columns={2}
+          />
+        </section>
+      )}
+
       {/* MDX Content */}
       <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
         <MDXRemote source={content} components={mdxComponents} />
