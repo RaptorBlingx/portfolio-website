@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/mdx";
 import { MermaidDiagram } from "@/components/MermaidDiagram";
 import { ImageGallery } from "@/components/ImageGallery";
+import { ProjectHeroSlider } from "@/components/ProjectHeroSlider";
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -57,6 +58,10 @@ export default async function ProjectPage({
   if (!project) notFound();
 
   const { frontmatter, content } = project;
+  const heroImages =
+    frontmatter.featuredImages && frontmatter.featuredImages.length > 0
+      ? frontmatter.featuredImages
+      : [frontmatter.featuredImage];
 
   return (
     <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
@@ -175,15 +180,7 @@ export default async function ProjectPage({
       </header>
 
       {/* Hero image */}
-      <div className="relative mb-10 aspect-video overflow-hidden rounded-xl bg-[var(--muted-bg)]">
-        <Image
-          src={frontmatter.featuredImage}
-          alt={frontmatter.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      <ProjectHeroSlider images={heroImages} alt={frontmatter.title} />
 
       {/* MDX Content */}
       <div className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline">

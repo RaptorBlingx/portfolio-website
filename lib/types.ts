@@ -6,6 +6,7 @@ export interface ProjectFrontmatter {
   funding?: string;
   tags: string[];
   featuredImage: string;
+  featuredImages?: string[];
   demoUrl?: string;
   github?: string;
   summary: string;
