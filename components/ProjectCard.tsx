@@ -1,23 +1,20 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { ProjectFrontmatter } from "@/lib/types";
+import { ProjectCardSlider } from "./ProjectCardSlider";
 
 export function ProjectCard({ project }: { readonly project: ProjectFrontmatter }) {
+  const cardImages =
+    project.featuredImages && project.featuredImages.length > 0
+      ? project.featuredImages
+      : [project.featuredImage];
+
   return (
     <Link
       href={`/projects/${project.slug}`}
       className="group block overflow-hidden rounded-xl border border-[var(--card-border)]
                  bg-[var(--card)] transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
     >
-      <div className="relative aspect-video overflow-hidden bg-[var(--muted-bg)]">
-        <Image
-          src={project.featuredImage}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
+      <ProjectCardSlider images={cardImages} alt={project.title} />
       <div className="p-5">
         <div className="mb-2 flex flex-wrap gap-2">
           {project.tags.slice(0, 3).map((tag) => (
