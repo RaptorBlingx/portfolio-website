@@ -37,54 +37,23 @@ Industrial energy management is labor-intensive, technically demanding, and frag
 
 ## Architecture
 
-<MermaidDiagram chart={`
-graph TB
-  subgraph "User Interfaces"
-    VOICE[OVOS Voice Assistant]
-    CHAT[RASA Chatbot]
-    WEB[Web Dashboard — Analytics + KPIs]
-    GRAFANA[10 SOTA Grafana Dashboards]
-  end
-  subgraph "Intelligence Layer"
-    API[FastAPI Analytics Backend]
-    ML[ML Engine — ARIMA/Prophet]
-    ANOMALY[Anomaly Detection]
-    SANKEY[Sankey Energy Flow Engine]
-    COMPARE[Machine Comparison Analytics]
-    LLM[LLM Service — Report Generation]
-  end
-  subgraph "Data Pipeline"
-    NR[Node-RED — MQTT→Parse→Route→Process]
-    SIM[Factory Simulator API]
-    MQTT[MQTT Broker]
-  end
-  subgraph "Data Layer"
-    DB[(TimescaleDB — 19.2M Readings)]
-    MODELS[138 Baseline Models]
-  end
-  subgraph "IoT Layer"
-    PLUGS[Smart Plugs]
-    METERS[Energy Meters]
-    SENSORS[Environmental Sensors]
-  end
-  VOICE --> API
-  CHAT --> API
-  WEB --> API
-  API --> ML
-  API --> ANOMALY
-  API --> SANKEY
-  API --> COMPARE
-  API --> LLM
-  API --> DB
-  NR --> DB
-  MQTT --> NR
-  SIM --> MQTT
-  PLUGS --> MQTT
-  METERS --> MQTT
-  SENSORS --> MQTT
-  DB --> GRAFANA
-  DB --> MODELS
-`} />
+- **Interface Layer:** OVOS voice assistant, RASA chatbot, web dashboard, and 10 SOTA Grafana views
+- **Intelligence Layer:** FastAPI analytics, ARIMA/Prophet forecasting, anomaly detection, Sankey flow engine, machine comparison, LLM reporting
+- **Pipeline Layer:** Node-RED processing chain (MQTT → parse → route → process) and simulator API
+- **Data Layer:** TimescaleDB with 19.2M+ readings and 138 baseline models
+- **IoT Layer:** smart plugs, meters, and environmental sensors
+
+```text
+Voice / Chat / Dashboard / Grafana
+               ↓
+        FastAPI Intelligence Core
+               ↓
+Node-RED Pipeline + Simulator + MQTT
+               ↓
+ TimescaleDB (readings + baseline models)
+               ↓
+     KPIs, forecasts, anomalies, reports
+```
 
 ## Tech Stack
 

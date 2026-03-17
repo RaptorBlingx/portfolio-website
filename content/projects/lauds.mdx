@@ -38,35 +38,23 @@ FabCity Hamburg's urban fabrication labs had zero visibility into their energy c
 
 7 containerized services — `docker compose up` → fully operational platform:
 
-<MermaidDiagram chart={`
-graph TB
-  subgraph "Hardware Layer"
-    ESP[ESP32 Sensor Hubs — C++ Firmware] -->|MQTT| MOSQ[Mosquitto Broker]
-    SHELLY[30+ Shelly Smart Plugs] -->|MQTT| MOSQ
-    RPI[Raspberry Pi 4 + OctoPrint] -->|API| SIMPLY[SimplyPrint Cloud]
-  end
-  subgraph "Data Pipeline — Node-RED"
-    MOSQ --> NR[6+ Processing Flows]
-    NR --> INGEST[Ingest Shelly MQTT]
-    NR --> TRAIN[Model Training]
-    NR --> PREDICT[Live Predictor]
-    NR --> DPP_FLOW[DPP Generation]
-    NR --> ENV[Fetch Environment]
-  end
-  subgraph "Backend Services"
-    NR --> DB[(PostgreSQL + TimescaleDB)]
-    FLASK[Python Flask API] --> DB
-    FLASK --> DPP_PDF[DPP PDF Reports]
-    ML[ML Worker — Predictive Analytics] --> DB
-    ANALYSIS[Interactive Analysis Engine] --> DB
-  end
-  subgraph "Visualization & Frontend"
-    DB --> GRAFANA[Grafana — Pre-Provisioned Dashboards]
-    NGINX[Nginx — Reverse Proxy + Frontend] --> GRAFANA
-    NGINX --> FLASK
-    NGINX --> CRUD[Device Management CRUD UI]
-  end
-`} />
+- **Hardware Layer:** ESP32 sensor hubs, Shelly plugs, Raspberry Pi + OctoPrint bridge for legacy printers
+- **Ingestion Layer:** Mosquitto MQTT broker + Node-RED flows (ingest, model training, live predictor, DPP, environment)
+- **Backend Layer:** Flask API, ML Worker, Interactive Analysis engine
+- **Data Layer:** PostgreSQL + TimescaleDB for high-volume time-series storage
+- **Visualization Layer:** pre-provisioned Grafana dashboards + Nginx-hosted UI and CRUD modules
+
+```text
+Sensors / Smart Plugs / Printers
+              ↓
+       MQTT Broker + Node-RED
+              ↓
+ Flask API + ML Worker + Analysis Engine
+              ↓
+       PostgreSQL / TimescaleDB
+              ↓
+      Grafana + Web UI (Nginx)
+```
 
 ## Tech Stack
 

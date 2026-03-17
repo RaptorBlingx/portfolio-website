@@ -35,37 +35,20 @@ Personal finance apps are form-heavy, passive, and dumb. Users manually fill cat
 
 The intelligence layer is a **fault-tolerant 7-agent swarm** where each agent specializes in one task:
 
-<MermaidDiagram chart={`
-graph TB
-  subgraph "Flutter Client"
-    CHAT[Premium Chat UI] --> VOICE[Voice Input]
-    CHAT --> RECEIPT[Receipt Camera]
-    DASH[Hero Dashboard] --> INSIGHTS[AI Insight Carousel]
-    DASH --> BUDGET[Budget Gauges]
-    PRICE[Price Intelligence] --> SCAN[Barcode Scanner]
-  end
-  subgraph "7-Agent AI Swarm · Gemini 2.5 Flash"
-    ORCH[Agent 1: ORCHESTRATOR — The Brain]
-    ORCH --> EXT[Agent 2: EXTRACTOR — NL → Data]
-    ORCH --> VAL[Agent 3: VALIDATOR — Field Checks]
-    ORCH --> CTX[Agent 4: CONTEXT — Suggestions]
-    ORCH --> REC[Agent 5: RECEIPT — Gemini Vision OCR]
-    ORCH --> ITEM[Agent 6: ITEM TRACKER — Line Items]
-    ORCH --> PAT[Agent 7: PATTERN LEARNER — Behavioral]
-  end
-  subgraph "Firebase Backend"
-    AUTH[Google/Apple Sign-In + Biometrics]
-    FS[Cloud Firestore]
-    FCM[Push Notifications]
-    CF[Cloud Functions — Scheduled Jobs]
-    CRASH[Crashlytics + Analytics]
-  end
-  CHAT --> ORCH
-  RECEIPT --> REC
-  EXT --> FS
-  PAT --> FS
-  CF --> FCM
-`} />
+- **Client Layer:** Flutter app with premium chat UI, voice input, receipt camera, dashboard, and price intelligence
+- **AI Layer:** 7-agent Gemini swarm (Orchestrator, Extractor, Validator, Context, Receipt OCR, Item Tracker, Pattern Learner)
+- **Backend Layer:** Firebase Auth, Firestore, Cloud Functions, FCM, Crashlytics, Analytics
+- **Flow:** natural language/voice/receipt input → orchestrated agent reasoning → validated transactions + insights → persistent storage + notifications
+
+```text
+Flutter Client (Chat / Voice / Receipt / Dashboard)
+                     ↓
+        Gemini 2.5 Flash · 7-Agent Swarm
+                     ↓
+        Firebase (Auth / Firestore / Functions)
+                     ↓
+      Insights, alerts, reports, and coaching loops
+```
 
 ## Tech Stack
 

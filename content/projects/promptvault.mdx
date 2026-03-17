@@ -31,32 +31,21 @@ Developers and AI practitioners accumulate dozens — sometimes hundreds — of 
 
 ## Architecture
 
-<MermaidDiagram chart={`
-graph TB
-  subgraph "Windows Desktop"
-    BUBBLE[Electron Floating Bubble] -->|Global Hotkey| SEARCH[Instant Search]
-    BUBBLE --> VARS[Variable Fill Dialog]
-    BUBBLE --> COPY[One-Click Copy]
-    BUBBLE -->|HTTP API| SERVER
-  end
-  subgraph "Web Dashboard"
-    REACT[React 18 + TypeScript + Vite] --> CMD[Command Palette — Ctrl+K]
-    REACT --> FOLDERS[Folder Organization]
-    REACT --> VER[Version History — Last 5]
-    REACT --> SMART[Smart Variables]
-    REACT -->|REST API| SERVER
-  end
-  subgraph "Server — Ubuntu"
-    SERVER[Express.js API — 11+ Endpoints]
-    SERVER --> DB[(SQLite — Offline-First)]
-    SERVER -->|Optimize| GEMINI[Google Gemini API]
-  end
-  subgraph "Deployment"
-    DOCKER[Docker Multi-Stage Build]
-    DOCKER --> NGINX[Nginx Reverse Proxy]
-    DOCKER --> SUPER[Supervisord]
-  end
-`} />
+- **Desktop Layer:** Electron floating bubble with global hotkey, instant search, variable fill dialog, and one-click copy
+- **Web Layer:** React + TypeScript dashboard with folders, command palette, version history, and smart variables
+- **API Layer:** Express.js REST endpoints (CRUD, import/export, health)
+- **Data + AI Layer:** SQLite offline-first storage + Gemini optimization endpoint
+- **Ops Layer:** Docker multi-stage build, Nginx reverse proxy, supervisord process orchestration
+
+```text
+Electron Bubble + React Dashboard
+              ↓
+          Express API
+              ↓
+    SQLite (offline-first) + Gemini
+              ↓
+       Docker + Nginx runtime
+```
 
 ## Tech Stack
 
