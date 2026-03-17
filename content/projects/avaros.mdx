@@ -4,7 +4,7 @@ role: "Lead Developer & System Architect"
 period: "2025–2026"
 funding: "EU — WASABI Consortium"
 tags: ["AI", "Industrial", "EU R&D", "Docker", "IoT"]
-featuredImage: "/assets/projects/avaros-hero.png"
+featuredImage: "/assets/projects/avaros/dashboard-dark.png"
 demoUrl: ""
 github: "https://github.com/RaptorBlingx/AVAROS"
 summary: "Leading the architecture and development of AVAROS — a voice-first AI assistant for sustainable manufacturing. Features OVOS voice AI, DocuBoT RAG knowledge assistant, PREVENTION predictive maintenance, platform-agnostic adapter pattern, and Clean Architecture with 7 documented design decisions. Targets 8% electricity reduction, 5% materials efficiency, and 10% CO₂ reduction under the EU WASABI consortium."
@@ -34,56 +34,44 @@ Manufacturing operators need real-time access to energy KPIs, anomaly alerts, an
 - **Supervised a junior developer** — code reviews, task delegation, architectural mentoring
 - Implemented **GDPR-compliant audit trails**, RBAC, data minimization, and security hardening
 
+## Platform Screenshots
+
+<ImageGallery images={[
+  { src: "/assets/projects/avaros/dashboard-dark.png", alt: "AVAROS dashboard — KPI summary, system health, adapter/platform state, and integrated voice assistant panel" },
+  { src: "/assets/projects/avaros/settings-light.png", alt: "AVAROS settings panel — voice/audio configuration, STT/TTS tuning, wake-word sensitivity, and platform bindings" },
+]} />
+
 ## Architecture
 
 Built on **Clean Architecture** with strict layer separation — domain never imports infrastructure:
 
-<MermaidDiagram chart={`
-graph TB
-  subgraph "Presentation Layer"
-    VOICE[OVOS Voice Assistant] --> QD
-    WEB[React + TypeScript Dashboard] --> API[FastAPI Backend]
-  end
-  subgraph "Intelligence Layer"
-    QD[QueryDispatcher — 5 Query Types]
-    QD --> KPI[KPI Retrieval]
-    QD --> COMP[Comparison]
-    QD --> TREND[Trend Analysis]
-    QD --> ANOM[Anomaly Detection]
-    QD --> WHAT[What-If Simulation]
-    DOC[DocuBoT — RAG Knowledge] --> API
-    PREV[PREVENTION — Predictive Maintenance] --> API
-  end
-  subgraph "Domain Layer — Immutable Models"
-    API --> DOMAIN[Canonical Metrics Framework]
-    DOMAIN --> ADAPTERS{Platform Adapters}
-  end
-  subgraph "Infrastructure Layer"
-    ADAPTERS --> REN[RENERYO Adapter]
-    ADAPTERS --> ES[EnergySuite Adapter]
-    ADAPTERS --> GM[GreenMetrics Adapter]
-    ADAPTERS --> MOCK[Mock Adapter — Zero-Config]
-    DB[(TimescaleDB)] --> API
-    MQTT[MQTT / Modbus TCP] --> SENSORS[IoT Sensors]
-  end
-  subgraph "Security & Ops"
-    NGINX[Nginx TLS Reverse Proxy]
-    GDPR[GDPR Audit Trails + RBAC]
-    DOCKER[Docker-Compose Orchestration]
-  end
-`} />
+- **Presentation Layer:** OVOS voice interface + React/TypeScript dashboard
+- **Application Layer:** FastAPI orchestration and query routing (KPI retrieval, comparison, trend, anomaly, what-if)
+- **Domain Layer:** canonical metric model + immutable business entities
+- **Integration Layer:** platform adapters (RENERYO, EnergySuite, GreenMetrics, Mock)
+- **Data/Infra Layer:** TimescaleDB, MQTT/Modbus, Docker-Compose, Nginx TLS, RBAC/audit trail
+
+```text
+OVOS / Web UI
+      ↓
+FastAPI Orchestrator
+      ↓
+Domain Use-Cases + Metric Model
+      ↓
+Platform Adapters
+      ↓
+TimescaleDB + MQTT/Modbus + Secure Runtime
+```
 
 ### 7 Design Decisions
 
-| Decision | Description |
-|----------|-------------|
-| **DEC-001** | Platform-agnostic — works with ANY manufacturing platform via adapter pattern |
-| **DEC-002** | Universal Metric Framework — canonical names mapped per platform |
-| **DEC-003** | Clean Architecture — strict layer separation, domain never imports infrastructure |
-| **DEC-004** | Immutable Domain Models — frozen dataclasses, thread-safe |
-| **DEC-005** | Zero-Config First Run — MockAdapter fallback, `docker compose up` → working system |
-| **DEC-006** | Settings Service Pattern — no hardcoded credentials anywhere |
-| **DEC-007** | Intelligence in Orchestration — adapters are dumb data fetchers; intelligence lives in QueryDispatcher, DocuBoT, PREVENTION |
+- **DEC-001 — Platform-agnostic:** works with any manufacturing platform via adapter pattern
+- **DEC-002 — Universal Metric Framework:** canonical metric names mapped per platform
+- **DEC-003 — Clean Architecture:** strict layer separation; domain never imports infrastructure
+- **DEC-004 — Immutable Domain Models:** frozen dataclasses for thread safety and predictable behavior
+- **DEC-005 — Zero-Config First Run:** MockAdapter fallback; `docker compose up` gives a working system
+- **DEC-006 — Settings Service Pattern:** no hardcoded credentials in application code
+- **DEC-007 — Intelligence in Orchestration:** adapters fetch data; intelligence lives in QueryDispatcher, DocuBoT, and PREVENTION
 
 ## Tech Stack
 
